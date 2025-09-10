@@ -4,6 +4,11 @@ A responsive chat application built with **Next.js (App Router, TypeScript, Tail
 It connects to a **Weather Agent API** and provides a smooth, mobile-first chat experience with persistent local chat history.
 
 ---
+## 🌐 Deployed Link
+
+You can access the live application here: **[Deployed App Link](https://weather-agent-chatbot.vercel.app/)**
+
+---
 
 ##  Tech Stack
 
