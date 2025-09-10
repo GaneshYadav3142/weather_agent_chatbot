@@ -76,7 +76,7 @@ It connects to a **Weather Agent API** and provides a smooth, mobile-first chat 
 
 ```bash
 # Clone repo
-git clone https://github.com/YOUR_USERNAME/weather-chat.git
+git clone https://github.com/GaneshYadav3142/weather_agent_chatbot.git
 cd weather_agent_chatbot
 
 # Install dependencies
