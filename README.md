@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather Agent Chat Interface
 
-## Getting Started
+A responsive chat application built with **Next.js (App Router, TypeScript, Tailwind CSS, Framer Motion, and Lucide React)**.  
+It connects to a **Weather Agent API** and provides a smooth, mobile-first chat experience with persistent local chat history.
 
-First, run the development server:
+---
+
+##  Tech Stack
+
+- **[Next.js 14+](https://nextjs.org/)** – React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org/)** – Static typing
+- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first styling
+- **[Framer Motion](https://www.framer.com/motion/)** – Animations
+- **[Lucide React](https://lucide.dev/)** – Modern icons
+- **LocalStorage** – Persistent chat history
+- **Weather Agent API** – Real-time weather responses via streaming
+
+---
+
+## 📸 Features & Screenshots
+
+### 🔹 Chat Interface
+- Send & receive messages in a clean interface.
+- User messages align **right**, agent messages align **left**.
+- Auto-scrolls to the latest message.
+
+![Chat Example](./public/screen1.png)
+
+---
+
+### 🔹 Persistent Chats (LocalStorage)
+- Chats are stored locally in the browser.
+- Sidebar shows all previous conversations.
+- Create new chats or delete old ones.
+
+![Sidebar](./public/screen2.png)
+
+---
+
+### 🔹 Sidebar Toggle (Mobile Friendly)
+- On **desktop** → Sidebar docked by default.
+- On **mobile** → Sidebar slides in/out (Framer Motion).
+- Overlay closes sidebar on tap.
+
+![Sidebar Toggle](./public/screen3.png)
+
+
+---
+
+### 🔹 Delete Confirmation
+- Clicking **delete** shows a confirmation modal.
+- Prevents accidental deletion of chats.
+
+![Delete Modal](./public/screen4.png)
+
+---
+
+## ⚙️ How It Works
+
+1. **API Integration**
+   - Messages are sent to the Weather Agent API.
+   - The API streams back responses in chunks.
+   - Our parser extracts only the `"0": "..."` values to reconstruct agent replies.
+
+2. **Local Storage**
+   - Chats (`id`, `title`, `messages`) are saved under `chats` key.
+   - User can load previous chats across sessions.
+
+3. **Animations**
+   - Sidebar uses **Framer Motion** to slide in/out.
+   - Modal scales/fades in with animation.
+
+---
+
+## 🛠️ Setup & Installation
 
 ```bash
+# Clone repo
+git clone https://github.com/YOUR_USERNAME/weather-chat.git
+cd weather_agent_chatbot
+
+# Install dependencies
+npm install
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
