@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Chat from "./Chat";
 import {
@@ -30,7 +30,30 @@ export default function ChatApp() {
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [confirmOpen, setConfirmOpen] = useState(false);
-const [deleteId, setDeleteId] = useState<string | null>(null);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
+    
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target as Node)
+    ) {
+      setSidebarOpen(false);
+    }
+  };
+
+  if (sidebarOpen) {
+    document.addEventListener("mousedown", handleClickOutside);
+  } else {
+    document.removeEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [sidebarOpen]);
 
   
   useEffect(() => {
@@ -90,7 +113,8 @@ const handleConfirmDelete = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-<motion.div
+          <motion.div
+               ref={sidebarRef}
   initial={{ x: "-100%" }}
   animate={{ x: sidebarOpen ? 0 : "-100%" }}
   transition={{ duration: 0.3, ease: "easeInOut" }}
